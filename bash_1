@@ -1,0 +1,17 @@
+#!/bin/bash
+
+filename="$1"
+
+if [ -f "$filename" ]; then
+    lines=$(wc -l < "$filename")
+    words=$(wc -w < "$filename")
+    characters=$(wc -c < "$filename")
+    md5sum=$(md5sum "$filename" | awk '{print $1}')
+
+    echo "row count: $lines"
+    echo "number of words: $words"
+    echo "number of characters: $characters"
+    echo "MD5 hash: $md5sum"
+else
+    echo "File is not found."
+fi
