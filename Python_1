@@ -1,0 +1,20 @@
+import os
+import sys
+
+directory = sys.argv[1]
+
+if os.path.isdir(directory):
+    files = []
+
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if os.path.isfile(filepath):
+            size = os.path.getsize(filepath)
+            files.append((filename, size))
+
+    sorted_files = sorted(files, key=lambda x: x[1], reverse=True)
+
+    for file in sorted_files:
+        print(f"File name: {file[0]}\tsize: {file[1]}")
+else:
+    print("This path is not a directory.")
